@@ -1,0 +1,49 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": { "text": "Airport Operations" },
+    "width": 400,
+	"height": 600,
+    "data": {
+        "url": "MY.csv"
+    },
+    "encoding": {
+        "y": { "aggregate": "count", "field": "operation", "type": "quantitative", "title": "Count" },
+        "x": { "field": "name", "type": "nominal", "title": "Airport" },
+        "color": { 
+            "field": "operation",
+            "type": "nominal",
+            "scale": {
+                "domain": ["landing", "takeoff"],
+                "range": ["#1f77b4", "#ff7f0e"]
+            },
+            "title": "Operation"
+        }
+    },
+    "layer": [
+        {
+            "mark": { "type": "bar" },
+            "encoding": {
+                "tooltip" : [
+                    {
+                        "field": "name",
+                        "type": "nominal",
+                        "title": "Airport"
+                    },
+                    {
+                        "field": "operation",
+                        "aggregate": "count",
+                        "type": "quantitative",
+                        "title": "Count"
+                    }
+                ]
+            }
+        },
+        {
+            "mark": { "type": "text", "align": "left", "baseline": "bottom", "dx": 3 },
+            "encoding": {
+                "text": { "aggregate": "count", "field": "operation", "type": "quantitative" },
+                "color": { "value": "black" }
+            }
+        }
+    ]
+}

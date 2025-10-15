@@ -1,0 +1,13 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "data": {"url": "MY.csv"},
+  "mark": "rect",
+  "encoding": {
+    "y": {"field": "time", "type": "temporal", "timeUnit": "hours"},
+    "x": {"field": "time", "type": "temporal", "timeUnit": "monthdate"},
+    "color": {"aggregate": "count", "field": "time"}
+  },
+  "config": {
+    "axis": {"grid": true, "tickBand": "extent"}
+  }
+}

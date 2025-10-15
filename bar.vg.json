@@ -1,0 +1,39 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": { "text": "Aircraft Size Distribution" },
+    "width": 600,
+	"height": 250,
+    "data": {
+        "url": "MY.csv"
+    },
+    "encoding": {
+        "x": { "aggregate": "count", "field": "ac_size", "type": "quantitative", "title": "Count" },
+        "y": { "field": "ac_size", "type": "nominal", "title": "Aircraft Size Category" }
+    },
+    "layer": [
+        {
+            "mark": { "type": "bar" },
+            "encoding": {
+                "tooltip" : [
+                    {
+                        "field": "ac_size",
+                        "type": "nominal",
+                        "title": "Aircraft Size Category"
+                    },
+                    {
+                        "field": "count",
+                        "aggregate": "count",
+                        "type": "quantitative",
+                        "title": "Count"
+                    }
+                ]
+            }
+        },
+        {
+            "mark": { "type": "text", "align": "left", "baseline": "middle", "dx": 3 },
+            "encoding": {
+                "text": { "aggregate": "count", "field": "ac_size", "type": "quantitative" }
+            }
+        }
+    ]
+}

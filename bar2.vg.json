@@ -8,7 +8,7 @@
     },
     "encoding": {
         "y": { "aggregate": "count", "field": "operation", "type": "quantitative", "title": "Count" },
-        "x": { "field": "name", "type": "nominal", "title": "Airport" },
+        "x": { "field": "name", "type": "nominal", "title": "Airport", "axis": {"labelAngle": 45} },
         "color": { 
             "field": "operation",
             "type": "nominal",

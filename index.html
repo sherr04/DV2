@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Visualization View</title>
+	<title>Data Visualisation 2</title>
 	<!-- Add your CSS links here -->
 	<!-- Vega & Vega-Lite & Vega-Embed CDN -->
 	<script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
@@ -12,10 +12,113 @@
 	<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
 	<script src="vg_1.js"></script>
 </head>
+<style>
+	.Hcontainer {
+		display: flex;
+		justify-content: center;
+	}
+	.Hcontainer > div {
+		width: 50%;
+		max-width: 600px;
+	}
+	.container {
+		display: flex;
+		justify-content: center;
+	}
+	.container > div {
+		width: 100%;
+		max-width: 1200px;
+	}
+	h1 {
+		text-align: center;
+  	}
+
+
+	/* #vis {
+		width: 90%;
+		max-width: 1000px;
+		display: flex;
+		text-align: center;
+	} */
+	
+	/* Middle row - single centered visualization */
+	/* #bar {
+		width: 90%;
+		max-width: 800px;
+	} */
+	/* * {
+	  box-sizing: border-box;
+	}
+	.row {
+	  display: flex;
+	}
+	.column {
+	  flex: 50%;
+	  padding: 10px;
+	} */
+	/* div {
+		display: flex;
+		justify-content: center;
+		align-items: center; 
+	} */
+	/* #vis, #bar {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
+	#stackbar, #heatmap {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+	.vega-embed {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.vega-embed details {
+		order: 2; Move parameters below the visualization 
+		margin-top: 10px;
+	} 
+	 */
+</style>
 <body>
-	<h1>Number of Flights of Malaysia's International Airports (per day)</h1>
-		<div id="vis"></div>
+	<h1>Malaysia's International Airports Air Traffic</h1>
+		<!-- <div id="vis"></div>
 		<br><br><br>
 		<div id="bar"></div>
+		<br><br><br> -->
+		<!-- <div class="column">
+			<div class="row">
+				<div class="row">
+			</div>
+			<div class="row">
+				<div id="bar"></div>
+			</div>
+		</div> -->
+		<div class="container">
+			<div id="vis"></div>
+		</div>
+
+		<br><br>
+
+		<div class="container">
+			<div id="bar"></div>
+		</div>
+
+		<br><br>
+
+		<div class="Hcontainer">
+			<div id="stackbar"></div>
+			<div id="heatmap"></div>
+			<!-- <div class="column">
+				<div id="stackbar"></div>
+			</div>
+			<div class="column">
+				<div id="heatmap"></div>
+			</div> -->
+		</div>
 </body> 
 </html>

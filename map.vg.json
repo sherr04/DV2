@@ -2,8 +2,8 @@
 	"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
 	"description": "Malaysia map with state borders. (only internaltional airports)",
 	"width": 1000,
-	"height": 600,
-	"projection": { "type": "mercator", "scale": 3000, "center": [110, 4] },
+	"height": 500,
+	"projection": { "type": "mercator", "scale": 2500, "center": [110, 4] },
 	"params": [
 		{
 			"name": "name_selection",

@@ -1,11 +1,18 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-  "data": {"url": "MY.csv"},
+  "width": 400,
+	"height": 600,
+  "data": {"url": "all.csv"},
   "mark": "rect",
   "encoding": {
-    "y": {"field": "time", "type": "temporal", "timeUnit": "hours"},
-    "x": {"field": "time", "type": "temporal", "timeUnit": "monthdate"},
-    "color": {"aggregate": "count", "field": "time"}
+    "y": {"field": "time", "type": "temporal", "timeUnit": "hours", "title": "Hour"},
+    "x": {"field": "time", "type": "temporal", "timeUnit": "month", "title": "Month"},
+    "color": {"aggregate": "count", "field": "time"},
+    "tooltip": [
+        {"field": "time", "type": "temporal", "timeUnit": "month", "title": "Month"},
+      {"field": "time", "type": "temporal", "timeUnit": "hours", "title": "Hour"},
+      {"field": "*", "aggregate": "count", "type": "quantitative", "title": "Count"}
+    ]
   },
   "config": {
     "axis": {"grid": true, "tickBand": "extent"}

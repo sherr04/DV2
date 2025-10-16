@@ -3,6 +3,17 @@
     "title": { "text": "Airport Operations" },
     "width": 400,
 	"height": 600,
+    "params": [
+        {
+            "name": "operation_selection",
+            "bind": {
+                "input": "select",
+                "options": [null, "landing", "takeoff"],
+                "labels": ["Show All", "Landing", "Takeoff"],
+                "name": "Operation Selection: "
+            }
+        }
+    ],
     "data": {
         "url": "MY.csv"
     },
@@ -36,14 +47,20 @@
                         "title": "Count"
                     }
                 ]
-            }
+            },
+            "transform": [
+                { "filter": "operation_selection == null || datum.operation == operation_selection" }
+            ]
         },
         {
             "mark": { "type": "text", "align": "left", "baseline": "bottom", "dx": 3 },
             "encoding": {
                 "text": { "aggregate": "count", "field": "operation", "type": "quantitative" },
                 "color": { "value": "black" }
-            }
+            },
+            "transform": [
+                { "filter": "operation_selection == null || datum.operation == operation_selection" }
+            ]
         }
     ]
 }

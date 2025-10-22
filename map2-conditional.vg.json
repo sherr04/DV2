@@ -1,0 +1,46 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Map (conditional encoding) — keep all rows but only selected rows use triangle/visible",
+  "width": 1000,
+  "height": 500,
+  "layer": [
+    {
+      "data": {"url": "https://gist.githubusercontent.com/jrrickard/8755532505a40f3b8317/raw/ecd98849d3a5f4502b773b986254f19af3b8d8fb/oceans.topo.json", "format": {"type": "topojson", "feature": "oceans"}},
+      "projection": {"type": "equirectangular"},
+      "mark": {"type": "geoshape", "fill": "lightcyan", "stroke": "white"}
+    },
+    {
+      "data": {"url": "country_grid.json", "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}},
+      "projection": {"type": "equirectangular"},
+      "mark": {"type": "geoshape", "fill": "none", "stroke": "lightgrey"}
+    },
+    {
+      "data": {"url": "country_grid.json", "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}},
+      "projection": {"type": "equirectangular"},
+      "mark": {"type": "geoshape", "fill": "lightgoldenrodyellow", "stroke": "black"}
+    },
+    {
+      "data": {"url": "HK.csv"},
+      "mark": {"type": "rule"},
+      "encoding": {
+        "longitude": {"field": "ori_longitude", "type": "quantitative"},
+        "latitude": {"field": "ori_latitude", "type": "quantitative"},
+        "longitude2": {"field": "des_longitude"},
+        "latitude2": {"field": "des_latitude"},
+        "color": {"value": "red"}
+      }
+    },
+    {
+      "data": {"url": "HK.csv"},
+      "transform": [{"calculate": "atan2(datum.des_latitude - datum.ori_latitude, datum.des_longitude - datum.ori_longitude) * 180 / PI", "as": "angle_deg"}],
+      "mark": {"type": "point", "size": 50},
+      "encoding": {
+        "longitude": {"field": "des_longitude", "type": "quantitative"},
+        "latitude": {"field": "des_latitude", "type": "quantitative"},
+        "angle": {"field": "angle_deg", "type": "quantitative"},
+        "shape": {"condition": {"test": "datum.mark == 1", "value": "triangle"}, "value": "circle"},
+        "opacity": {"condition": {"test": "datum.mark == 1", "value": 1}, "value": 0}
+      }
+    }
+  ]
+}

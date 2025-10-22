@@ -15,7 +15,7 @@
         }
     ],
     "data": {
-        "url": "MY.csv"
+        "url": "all.csv"
     },
     "encoding": {
         "y": { "aggregate": "count", "field": "operation", "type": "quantitative", "title": "Count" },

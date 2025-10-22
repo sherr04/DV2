@@ -4,7 +4,7 @@
     "width": 1000,
 	"height": 200,
     "data": {
-        "url": "MY.csv"
+        "url": "all.csv"
     },
     "encoding": {
         "x": { "aggregate": "count", "field": "ac_size", "type": "quantitative", "title": "Count" },

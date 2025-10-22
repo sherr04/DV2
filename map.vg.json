@@ -46,7 +46,7 @@
 		}
 		},
 		{
-			"data": { "url": "MY.csv" },
+			"data": { "url": "all.csv" },
 			"mark": {"type": "circle"},
 			"encoding": {
 				"longitude": { "field": "longitude", "type": "quantitative" },
@@ -91,7 +91,7 @@
 				]
 		},
 		{
-			"data": { "url": "MY.csv" },
+			"data": { "url": "all.csv" },
 			"mark": {
 				"type": "text",
 				"align": "left",

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Stock prices of 5 Tech Companies over Time.",
+  "width": 1000,
+  "height": 500,
+  "data": {"url": "all.csv"},
+  "mark": "line",
+  "encoding": {
+    "x": {"field": "time", "type": "temporal", "timeUnit": "month", "title": "Month"},
+    "y": {"aggregate": "count", "field": "operation", "type": "quantitative", "title": "Flights"},
+    "color": {"field": "name", "type": "nominal", "title": "Airport"}
+  }
+}

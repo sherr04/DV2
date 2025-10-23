@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Data Visualisation 2</title>
+	<!-- Add your CSS links here -->
+	<!-- Vega & Vega-Lite & Vega-Embed CDN -->
+	<script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+	<script src="vg_1.js"></script>
+</head>
+<style>
+	.Hcontainer {
+		display: flex;
+		justify-content: center;
+	}
+	.Hcontainer > div {
+		width: 50%;
+		max-width: 600px;
+	}
+	.container {
+		display: flex;
+		justify-content: center;
+	}
+	.container > div {
+		width: 100%;
+		margin: 0;
+  		padding: 0;
+		max-width: 1000px;
+	}
+	h1 {
+		text-align: center;
+  	}
+</style>
+<body>
+	<h1>Malaysia's International Airports Air Traffic</h1>
+	<div class="pure-g">
+		<div class="container">
+			<div id="vis"></div>
+		</div>
+	</div>
+		<div class="container">
+			<div id="vis"></div>
+		</div>
+
+		<br><br>
+
+		<div class="container">
+			<div id="worldmap"></div>
+		</div>
+
+		<br><br>
+
+		<div class="container">
+			<div id="doughnut"></div>
+		</div>
+
+		<br><br>
+
+		<div class="container">
+			<div id="heatmap"></div>
+		</div>
+
+		<br><br>
+
+		<div class="container">
+			<div id="line"></div>
+		</div>
+
+		<br><br>
+
+		<div class="container">
+			<div id="stackbar"></div>
+		</div>
+</body> 
+</html>

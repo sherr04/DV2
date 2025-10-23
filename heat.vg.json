@@ -1,12 +1,20 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-    "title": { "text": "Malaysia's Air Traffic Frequency" },
-    "width": 400,
+    "description": "Malaysia's Air Traffic Frequency",
+    "width": 943,
     "height": 600,
     "data": {"url": "all.csv"},
     "mark": "rect",
     "encoding": {
-        "y": {"field": "time", "type": "temporal", "timeUnit": "hours", "title": "Hour"},
+        "y": {
+            "field": "time", 
+            "type": "temporal", 
+            "timeUnit": "hours", 
+            "title": "Hour",
+            "axis": {
+                "titlePadding": 15
+            }
+        },
         "x": {"field": "time", "type": "temporal", "timeUnit": "month", "title": "Month"},
         "color": {"aggregate": "count", "field": "time"},
         "tooltip": [
@@ -16,6 +24,14 @@
         ]
     },
     "config": {
-        "axis": {"grid": true, "tickBand": "extent"}
+        "axis": {"grid": true, "tickBand": "extent"},
+        "legend": {
+			"orient": "none",
+			"legendX": 823,
+			"legendY": -45,
+			"direction": "horizontal",
+			"gradientLength": 120,
+			"gradientThickness": 12
+		}
     }
 }

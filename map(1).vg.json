@@ -1,0 +1,113 @@
+{
+	"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+	"description": "Malaysia map with state borders. (only internaltional airports)",
+	"width": 1000,
+	"height": 500,
+	"config": {
+		"legend": {
+			"orient": "none",
+			"legendX": 895,
+			"legendY": 340,
+			"direction": "vertical",
+			"gradientLength": 120,
+			"gradientThickness": 12
+		}
+			},
+	"projection": { "type": "mercator", "scale": 2500, "center": [110, 4] },
+	"layer": [
+		{
+		"data": {"url": "country_grid.json", "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}},
+		"projection": {"type": "equirectangular"},
+		"mark": {"type": "geoshape", "fill": "none", "stroke": "lightgrey"}
+		},
+		{
+		"data": {
+			"url": "geoBoundaries-MYS-ADM1.topojson",
+			"format": { "type": "topojson", "feature": "MYSADM1gbOpen" }
+		},
+		"projection": { "type": "mercator", "scale": 2500, "center": [110, 4] },
+		"mark": {
+			"type": "geoshape",
+			"stroke": "#333",
+			"strokeWidth": 1,
+			"fill": "lightgoldenrodyellow"
+		}
+		},
+		{
+			"data": { "url": "all.csv" },
+			"mark": {"type": "circle"},
+			"encoding": {
+				"longitude": { "field": "longitude", "type": "quantitative" },
+				"latitude": { "field": "latitude", "type": "quantitative" },
+								"size": { 
+					"aggregate": "count", 
+					"field": "iso_country", 
+					"type": "quantitative", 
+					"legend": { 
+						"title": "Number of Flights",
+						"values": [200, 400, 600, 800, 1000, 1200, 1400],
+						"labelExpr": "datum.value == 200 ? '< 200' : datum.value == 400 ? '200 - 400' : datum.value == 600 ? '401 - 600' : datum.value == 800 ? '601 - 800' : datum.value == 1000 ? '801 - 1000' : datum.value == 1200 ? '1001 - 1200' : datum.value == 1400 ? '> 1200' : ''"
+					}, 
+					"scale": { 
+						"domain": [200, 400, 600, 800, 1000, 1200, 1400],
+						"range": [50, 100, 150, 200, 250, 300, 350]
+					} 
+				},
+				"color": { "value": "steelblue" },
+				"opacity": {
+					"value": 1
+				},
+				"tooltip": [
+					{
+						"field": "name",
+						"type": "nominal",
+						"title": "Airport Name"
+					},
+					{
+						"field": "size",
+						"aggregate": "count",
+						"type": "quantitative",
+						"title": "Number of Flights"
+					}
+				]
+			}
+		},
+		{
+			"data": { "url": "all.csv" },
+			"transform": [
+				{
+					"aggregate": [{
+						"op": "count",
+						"as": "flight_count",
+						"field": "iso_country"
+					}],
+					"groupby": ["name", "latitude", "longitude"]
+				},
+				{
+					"filter": "datum.flight_count >= 1000"
+				},
+				{
+					"calculate": "datum.name === 'Penang International Airport' ? 'PEN' : datum.name === 'Kuala Lumpur International Airport' ? 'KUL' : datum.name === 'Kota Kinabalu International Airport' ? 'BKI' : datum.name",
+					"as": "custom_label"
+				}
+			],
+			"mark": {
+				"type": "text",
+				"align": "right",
+				"baseline": "top",
+				"dx": -14,
+				"fontSize": 18,
+				"fontWeight": "bold",
+				"color": "black",
+				"stroke": "white",
+				"strokeWidth": 0.1,
+				"clip": true
+			},
+			"encoding": {
+				"longitude": { "field": "longitude", "type": "quantitative" },
+				"latitude": { "field": "latitude", "type": "quantitative" },
+				"text": { "field": "custom_label", "type": "nominal" }
+			}
+		}
+	]
+}

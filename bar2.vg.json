@@ -1,8 +1,18 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": { "text": "Airport Operations" },
-    "width": 400,
-	"height": 600,
+    "description": "Airport Operations",
+    "width": 943,
+	"height": 400,
+    "config": {
+		"legend": {
+			"orient": "none",
+			"legendX": 886,
+			"legendY": 10,
+			"direction": "vertical",
+			"gradientLength": 120,
+			"gradientThickness": 12
+		}
+			},
     "params": [
         {
             "name": "operation_selection",
@@ -17,9 +27,20 @@
     "data": {
         "url": "all.csv"
     },
+    "transform": [
+        {
+            "calculate": "datum.name === 'Penang International Airport' ? 'PEN' : datum.name === 'Kuala Lumpur International Airport' ? 'KUL' : datum.name === 'Kota Kinabalu International Airport' ? 'BKI' : datum.name === 'Kuching International Airport' ? 'KCH' : datum.name === 'Senai International Airport' ? 'JHB' : datum.name === 'Malacca International Airport' ? 'MKZ' : datum.name === 'Sultan Abdul Aziz Shah International Airport' ? 'SZB' : datum.name",
+            "as": "custom_label"
+        }
+    ],
     "encoding": {
-        "y": { "aggregate": "count", "field": "operation", "type": "quantitative", "title": "Count" },
-        "x": { "field": "name", "type": "nominal", "title": "Airport", "axis": {"labelAngle": 45} },
+        "x": { 
+            "aggregate": "count", 
+            "field": "operation", 
+            "type": "quantitative", 
+            "title": "Count"
+        },
+        "y": { "field": "custom_label", "type": "nominal", "title": "Airport", "axis": {"labelAngle": 0, "titlePadding": 16} },
         "color": { 
             "field": "operation",
             "type": "nominal",
@@ -33,6 +54,9 @@
     "layer": [
         {
             "mark": { "type": "bar" },
+            "transform": [
+                { "filter": "operation_selection == null || datum.operation == operation_selection" }
+            ],
             "encoding": {
                 "tooltip" : [
                     {
@@ -47,10 +71,7 @@
                         "title": "Count"
                     }
                 ]
-            },
-            "transform": [
-                { "filter": "operation_selection == null || datum.operation == operation_selection" }
-            ]
+            }
         },
         {
             "mark": { "type": "text", "align": "left", "baseline": "bottom", "dx": 3 },

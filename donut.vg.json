@@ -1,0 +1,87 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "A simple donut chart with embedded data.",
+  "width": 700,
+  "height": 400,
+  "padding": 10,
+  "config": {
+    "legend": {
+        "orient": "none",
+        "legendX": 560,
+        "legendY": 10,
+        "direction": "vertical",
+        "gradientLength": 120,
+        "gradientThickness": 12
+    }
+},
+  "params": [
+        {
+            "name": "airport_selection",
+            "bind": {
+                "input": "select",
+                "options": [null, "Kuala Lumpur International Airport", "Penang International Airport", "Kota Kinabalu International Airport", "Kuching International Airport", "Senai International Airport", "Malacca International Airport", "Sultan Abdul Aziz Shah International Airport"],
+                "labels": ["Show All", "Kuala Lumpur International Airport", "Penang International Airport", "Kota Kinabalu International Airport", "Kuching International Airport", "Senai International Airport", "Malacca International Airport", "Sultan Abdul Aziz Shah International Airport"],
+                "name": "Airport Selection: "
+            }
+        }
+    ],
+  "data": {
+    "url": "all.csv"
+  },
+  "layer": [
+        {
+            "mark": {"type": "arc", "innerRadius": 110},
+            "transform": [
+                { "filter": "airport_selection == null || datum.name == airport_selection" }
+            ],
+            "encoding": {
+                "theta": { "aggregate": "count", "field": "ac_size", "type": "quantitative"},
+                "color": { 
+                    "field": "ac_size", 
+                    "type": "nominal", 
+                    "title": "Aircraft Size Category",
+                    "scale": {
+                            "scheme": "paired"
+                    }
+                },
+                "tooltip": [
+                    {
+                        "field": "ac_size",
+                        "type": "nominal",
+                        "title": "Size"
+                    },
+                    {
+                        "field": "*",
+                        "aggregate": "count",
+                        "type": "quantitative",
+                        "title": "Count"
+                    }
+                ]
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "fontSize": 20,
+                "fontWeight": "bold",
+                "color": "black",
+                "text": "All Airports",
+                "align": "center",
+                "baseline": "middle"
+            },
+            "transform": [
+                { "filter": "airport_selection == null || datum.name == airport_selection" },
+                {
+                    "calculate": "airport_selection == null ? 'All Airports' : airport_selection === 'Penang International Airport' ? 'PEN' : airport_selection === 'Kuala Lumpur International Airport' ? 'KUL' : airport_selection === 'Kota Kinabalu International Airport' ? 'BKI' : airport_selection === 'Kuching International Airport' ? 'KCH' : airport_selection === 'Senai International Airport' ? 'JHB' : airport_selection === 'Malacca International Airport' ? 'MKZ' : airport_selection === 'Sultan Abdul Aziz Shah International Airport' ? 'SZB' : airport_selection",
+                    "as": "custom_label"
+                }
+            ],
+            "encoding": {
+                "text": { 
+                    "field": "custom_label", 
+                    "type": "nominal" 
+                }
+            }
+        }
+    ]
+}

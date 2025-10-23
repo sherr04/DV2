@@ -18,8 +18,7 @@
 		justify-content: center;
 	}
 	.Hcontainer > div {
-		width: 50%;
-		max-width: 600px;
+		width: 40%;
 	}
 	.container {
 		display: flex;
@@ -27,98 +26,297 @@
 	}
 	.container > div {
 		width: 100%;
-		max-width: 1200px;
+		margin: 0;
+  		padding: 0;
+		max-width: 1000px;
 	}
 	h1 {
 		text-align: center;
+		font-size: 40px;
   	}
 
+	body {
+            background-color: #f5f7fa; /* Light gray background */
+            margin: 0;
+            padding: 0;
+            font-family: 'Times New Roman', Times, serif;
+        }
 
-	/* #vis {
-		width: 90%;
-		max-width: 1000px;
-		display: flex;
-		text-align: center;
-	} */
-	
-	/* Middle row - single centered visualization */
-	/* #bar {
-		width: 90%;
-		max-width: 800px;
-	} */
-	/* * {
-	  box-sizing: border-box;
+	.dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
 	}
-	.row {
-	  display: flex;
-	}
-	.column {
-	  flex: 50%;
-	  padding: 10px;
-	} */
-	/* div {
-		display: flex;
-		justify-content: center;
-		align-items: center; 
-	} */
-	/* #vis, #bar {
-		width: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		flex-direction: column;
-	}
-	#stackbar, #heatmap {
-		width: 100%;
-		display: flex;
-		justify-content: center;
-	}
-	.vega-embed {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
-	.vega-embed details {
-		order: 2; Move parameters below the visualization 
+
+	.header-card {
+		max-width: 1135px;
+		margin: 0 auto;
+		background: white;
+		color: black;
+		padding: 30px;
+		border-radius: 12px;
+		margin-bottom: 0px;
 		margin-top: 10px;
-	} 
-	 */
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+		display: flex;
+		justify-content: center;
+	}
+
+	.card {
+		background: white;
+		border: 1px solid #e1e5e9;
+		padding: 20px;
+		border-radius: 8px;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+		margin-bottom: 20px;
+		overflow: hidden; /* Important for rounded corners */
+	}
+
+	.card-header {
+		padding: 20px;
+		/* border-bottom: 1px solid #e1e5e9; */
+		background: white;
+	}
+
+	.card-title {
+		margin: 0;
+		font-size: 20px;
+		font-weight: 600;
+		color: #2c3e50;
+	}
+
+	.card-body {
+		padding: 0; /* Remove padding so chart takes full width */
+	}
+
+	.chart-container {
+		width: 100%;
+		height: 100%; /* Adjust based on your needs */
+		display: flex;
+		justify-content: center;
+	}
+
+	.card-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 20px;
+		margin-top: 20px;
+	}
+
+	h2 {
+		justify-content: center;
+		text-align: center;
+		margin: 0 0 5px 0;
+		font-size: 28px;
+		color: #2c3e50;
+		font-family: 'Times New Roman', Times, serif;
+	}
+
+	.word-limited {
+		max-width: 65ch; /* Optimal for readability */
+		line-height: 1.6;
+		word-spacing: 0.1em;
+		text-align: left;
+		margin-bottom: 15px;
+		color: #555;
+	}
+
+	.text_container {
+		margin: 20px 50px 10px 50px;
+		width: 40%;
+		height: 100%;
+		text-align: justify;
+		color: #555;
+	}
+
+	.text2_container {
+		margin: 20px 50px 10px 50px;
+		width: 30%;
+		height: 100%;
+		text-align: justify;
+		color: #555;
+	}
+
+	.donut-container {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: flex-start;
+		width: 90%;
+		gap: 30px;
+		padding: 20px;
+	}
+
+	.donut-chart {
+		flex: 1;
+		width: 70%; /* Important for flex item sizing */
+		display: flex;
+	}
+
+	.donut-text {
+		flex: 1;
+		width: 30%;
+		text-align: justify;
+		color: #555;
+		line-height: 3;
+		margin: 50px 50px 0px 0px;
+	}
+
+	.subtitle {
+		font-size: 16px;
+		opacity: 0.9;
+		margin-bottom: 15px;
+	}
+
+	.definition {
+		background: #f8f9fa;
+		border-left: 4px solid #667eea;
+		padding: 15px;
+		margin: 15px 0;
+	}
+
+	@media (max-width: 768px) {
+		.card-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.left-aligned {
+        float: left;
+    }
+
+    .right-aligned {
+        float: right;
+		text-align: right;
+    }
+
+    .container3::after { /* Clearfix to contain floats */
+        content: "";
+        display: table;
+        clear: both;
+    }
 </style>
 <body>
-	<h1>Malaysia's International Airports Air Traffic</h1>
-		<!-- <div id="vis"></div>
-		<br><br><br>
-		<div id="bar"></div>
-		<br><br><br> -->
-		<!-- <div class="column">
-			<div class="row">
-				<div class="row">
+	<div class="header-card">
+		<h1>Malaysia's International Airports Air Traffic (2024-2025)</h1>
+	</div>
+
+	<div class="dashboard-container">
+
+		<div class="card">
+			<div class="card-header">
+				<h2>Air Traffic Hotspots</h2>
 			</div>
-			<div class="row">
-				<div id="bar"></div>
+			<div class="card-body">
+				<div class="chart-container" id="map-chart">
+					<div id="vis"></div>
+				</div>
+				<div class="chart-container">
+					<p class="text_container">Top 3 busiest runways in Malaysia are Penang International Airport <b><span style="color: blue;">(PEN)</span></b>, 
+						Kota Kinabalu International Airport <b><span style="color: blue;">(BKI)</span></b>, 
+						and Kuala Lumpur International Airport <b><span style="color: blue;">(KUL)</span></b>.
+					</p>
+				</div>
 			</div>
-		</div> -->
-		<div class="container">
-			<div id="vis"></div>
 		</div>
 
-		<br><br>
-
-		<div class="container">
-			<div id="bar"></div>
-		</div>
-
-		<br><br>
-
-		<div class="Hcontainer">
-			<div id="stackbar"></div>
-			<div id="heatmap"></div>
-			<!-- <div class="column">
-				<div id="stackbar"></div>
+		<div class="card">
+			<div class="card-header">
+				<h2>Monthly Flight Trends</h2>
 			</div>
-			<div class="column">
-				<div id="heatmap"></div>
-			</div> -->
+			<div class="card-body">
+				<div class="chart-container" id="line-chart">
+					<div id="line"></div>
+				</div>
+				<div class="chart-container">
+					<p class="text2_container">Around <b><span style="color: blue;">April</span></b> there is an 
+						<b><span style="color: blue;">increase</span></b> in the number of flights, indicating a potential peak travel period.
+					</p>
+					<p class="text2_container">Around <b><span style="color: blue;">November</span></b> there is a significant 
+						<b><span style="color: blue;">decrease</span></b> in the number of flights, indicating a potential off-peak travel period.
+					</p>
+				</div>
+			</div>
 		</div>
+
+		<div class="card">
+			<div class="card-header">
+				<h2>Direct Flight Routes from Malaysia to the World</h2>
+			</div>
+			<div class="card-body">
+				<div class="chart-container" id="worldmap-chart">
+					<div id="worldmap"></div>
+				</div>
+				<div class="chart-container">
+					<p class="text_container">Flights are mainly <b>concentrated in Southeast Asia</b>, <b>East Asia</b>, <b>Middle East</b> and <b>Australia</b>, 
+						as travelling to the US usually involves a layover in Dubai.
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="card-header">
+				<h2>Favorite Flight Times</h2>
+			</div>
+			<div class="card-body">
+				<div class="chart-container" id="heatmap-chart">
+					<div id="heatmap"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="card-header">
+				<h2>Airport Operations Breakdown</h2>
+			</div>
+			<div class="card-body">
+				<div class="chart-container" id="stackbar-chart">
+					<div id="stackbar"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="card-header">
+				<h2>Distribution of Aircraft Sizes by Airport</h2>
+			</div>
+			<div class="card-body">
+				<div class="chart-container" id="doughnut-chart">
+					<div class="donut-container">
+						<div class="donut-chart" id="doughnut"> </div>
+						<div class="donut-text">
+							<p>The majority of aircraft operating in Malaysian international airports are <b>Medium</b> sized aircraft, 
+								followed by <b>Large</b> and <b>Small</b> sized aircraft.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="card-body">
+				<div class="container3">
+					<span class="right-aligned">
+						<p>Created by: Tan Sher Li</p>
+						<p>Date: 23/10/2025</p>
+					</span>
+					<span class="left-aligned">
+						<p>Data Source: </p>
+						<p>
+							1. <a href="https://samples.adsbexchange.com/index.html#operations-ax-v2" target="_blank">ADS-B Exchange</a>
+						</p>
+						<p>
+							2. <a href="https://www.flightradar24.com/data/airports/kul/statistics" target="_blank">flightradar24</a>
+						</p>
+					</span>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
 </body> 
 </html>

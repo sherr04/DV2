@@ -1,13 +1,97 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
   "description": "Stock prices of 5 Tech Companies over Time.",
-  "width": 1000,
+  "width": 942,
   "height": 500,
   "data": {"url": "all.csv"},
-  "mark": "line",
-  "encoding": {
-    "x": {"field": "time", "type": "temporal", "timeUnit": "month", "title": "Month"},
-    "y": {"aggregate": "count", "field": "operation", "type": "quantitative", "title": "Flights"},
-    "color": {"field": "name", "type": "nominal", "title": "Airport"}
-  }
+  "layer": [
+    {
+      "mark": {"type": "line", "point": true},
+      "encoding": {
+        "x": {"field": "time", "type": "temporal", "timeUnit": "month", "title": "Month"},
+        "y": {
+          "aggregate": "count", 
+          "field": "operation", 
+          "type": "quantitative", 
+          "title": "Flights",
+          "axis": {
+              "titlePadding": 25
+          }
+        },
+        "color": {
+          "field": "name", 
+          "type": "nominal", 
+          "title": "Airport", 
+          "legend": {
+            "orient": "none",
+            "legendX": 5,
+            "legendY": -85,
+            "direction": "horizontal",
+            "symbolSize": 250,        
+            "symbolType": "triangle",   
+            "labelOffset": 10,        
+            "symbolStrokeWidth": 2,
+            "columns": 5,
+            "columnPadding": 24
+          }
+        },
+        "tooltip": [
+          {"field": "time", "type": "temporal", "timeUnit": "month", "title": "Month"},
+          {"field": "*", "aggregate": "count", "type": "quantitative", "title": "Flights"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "black",
+        "strokeWidth": 1,
+        "strokeDash": [5,5]
+      },
+      "encoding": {
+        "x": { "datum": { "month": "apr" } }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "dx": -30,
+        "dy": -265,
+        "fontSize": 13,
+        "fill": "black"
+      },
+      "encoding": {
+        "x": { "datum": { "month": "apr" } },
+        "text": {"datum": "April Peak"}
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "black",
+        "strokeWidth": 1,
+        "strokeDash": [5,5]
+      },
+      "encoding": {
+        "x": { "datum": { "month": "nov" } }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "dx": -40,
+        "dy": -265,
+        "fontSize": 13,
+        "fill": "black"
+      },
+      "encoding": {
+        "x": { "datum": { "month": "nov" } },
+        "text": {"datum": "November Dip"}
+      }
+    }
+  ]
 }
